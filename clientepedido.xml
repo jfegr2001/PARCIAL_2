@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1:3306
+- Generation Time: Oct 04, 2023 at 06:13 AM
+- Server version: 10.4.28-MariaDB
+- PHP Version: 8.1.17
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="clientepedido" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="clientes">
+                CREATE TABLE `clientes` (
+                  `clienteID` varchar(100) NOT NULL,
+                  `nombre` varchar(100) NOT NULL,
+                  `email` varchar(100) NOT NULL,
+                  PRIMARY KEY (`clienteID`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="pedidos">
+                CREATE TABLE `pedidos` (
+                  `pedidoID` int(11) NOT NULL AUTO_INCREMENT,
+                  `fechaPedido` date NOT NULL,
+                  `total` int(11) NOT NULL,
+                  `clienteID` varchar(100) NOT NULL,
+                  PRIMARY KEY (`pedidoID`),
+                  KEY `clienteID` (`clienteID`),
+                  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`clienteID`) REFERENCES `clientes` (`clienteID`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'clientepedido'
+    -->
+    <database name="clientepedido">
+        <!-- Table clientes -->
+        <table name="clientes">
+            <column name="clienteID">1</column>
+            <column name="nombre">JUAN</column>
+            <column name="email">JUAN@EMAIL</column>
+        </table>
+        <table name="clientes">
+            <column name="clienteID">2</column>
+            <column name="nombre">ANA</column>
+            <column name="email">ANA@EMAIL.COM</column>
+        </table>
+        <!-- Table pedidos -->
+        <table name="pedidos">
+            <column name="pedidoID">3</column>
+            <column name="fechaPedido">2023-10-03</column>
+            <column name="total">50000</column>
+            <column name="clienteID">1</column>
+        </table>
+        <table name="pedidos">
+            <column name="pedidoID">4</column>
+            <column name="fechaPedido">2023-10-03</column>
+            <column name="total">30000</column>
+            <column name="clienteID">1</column>
+        </table>
+        <table name="pedidos">
+            <column name="pedidoID">5</column>
+            <column name="fechaPedido">2023-10-03</column>
+            <column name="total">2500</column>
+            <column name="clienteID">2</column>
+        </table>
+    </database>
+</pma_xml_export>
